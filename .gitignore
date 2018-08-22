@@ -1,0 +1,6 @@
+# ignore IntelliJ files
+.idea
+
+target
+
+.DS_Store
