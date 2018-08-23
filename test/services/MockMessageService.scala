@@ -18,4 +18,5 @@ class MockMessageService extends MessageService {
   override def update(id: Long, title: String, body: String)(implicit session: DBSession): Int = 1
 
   override def deleteById(id: Long)(implicit s: DBSession): Int = 1
+
 }
