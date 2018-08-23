@@ -1,3 +1,6 @@
+import com.typesafe.config.{Config, ConfigFactory}
+import scala.collection.JavaConverters._
+
 name := """message-board"""
 organization := "com.example"
 
@@ -18,8 +21,21 @@ libraryDependencies ++= Seq(
   "org.skinny-framework" %% "skinny-orm" % "2.3.7",
   "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.+",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
-  "mysql" % "mysql-connector-java" % "6.0.6"
+  "mysql" % "mysql-connector-java" % "6.0.6",
 )
+
+lazy val envConfig = settingKey[Config]("env-config")
+
+envConfig := {
+  val env = sys.props.getOrElse("env", "dev")
+  ConfigFactory.parseFile(file("env") / (env + ".conf"))
+}
+
+flywayLocations := envConfig.value.getStringList("flywayLocations").asScala
+flywayDriver := envConfig.value.getString("jdbcDriver")
+flywayUrl := envConfig.value.getString("jdbcUrl")
+flywayUser := envConfig.value.getString("jdbcUserName")
+flywayPassword := envConfig.value.getString("jdbcPassword")
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"

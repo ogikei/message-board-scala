@@ -1,6 +1,8 @@
 # ignore IntelliJ files
 .idea
 
+# ignore target
 target
 
 .DS_Store
+env/
