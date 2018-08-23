@@ -22,6 +22,7 @@ libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.+",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "mysql" % "mysql-connector-java" % "6.0.6",
+  "com.adrianhurt" %% "play-bootstrap" % "1.2-P26-B3" // 追加
 )
 
 lazy val envConfig = settingKey[Config]("env-config")
@@ -39,6 +40,7 @@ flywayPassword := envConfig.value.getString("jdbcPassword")
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
+TwirlKeys.templateImports ++= Seq("forms._")
 
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
