@@ -1,18 +1,18 @@
 package controllers
 
-import java.time.ZonedDateTime
 import javax.inject._
 
-import models.Message
 import play.api.i18n.{I18nSupport, Messages}
 import play.api.mvc._
 import scalikejdbc.AutoSession
 
+import models.Task
+
 @Singleton
-class CreateMessageController @Inject()(components: ControllerComponents)
+class CreateTaskController @Inject()(components: ControllerComponents)
     extends AbstractController(components)
         with I18nSupport
-        with MessageControllerSupport {
+        with TaskControllerSupport {
 
   def index: Action[AnyContent] = Action { implicit request =>
     Ok(views.html.create(form))
@@ -25,13 +25,12 @@ class CreateMessageController @Inject()(components: ControllerComponents)
         .fold(
           formWithErrors => BadRequest(views.html.create(formWithErrors)), { model =>
             implicit val session = AutoSession
-            val now = ZonedDateTime.now()
-            val message = Message(None, model.body, now, now)
-            val result = Message.create(message)
+            val message = Task(None, model.content)
+            val result = Task.create(message)
             if (result > 0) {
-              Redirect(routes.GetMessagesController.index())
+              Redirect(routes.GetTasksController.index())
             } else {
-              InternalServerError(Messages("CreateMessageError"))
+              InternalServerError(Messages("CreateTaskError"))
             }
           }
         )

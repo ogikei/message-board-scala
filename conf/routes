@@ -4,23 +4,23 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET         /                           controllers.Default.redirect(to = "/messages")
+GET         /                        controllers.Default.redirect(to = "/tasks")
 
 # メッセージ一覧画面の表示
-GET         /messages                   controllers.GetMessagesController.index
+GET         /tasks                   controllers.GetTasksController.index
 # メッセージ詳細画面の表示
-GET         /messages/:id/get           controllers.GetMessageController.index(id: Long)
+GET         /tasks/:id/get           controllers.GetTaskController.index(id: Long)
 # メッセージ作成画面の表示
-GET         /messages/create            controllers.CreateMessageController.index
+GET         /tasks/create            controllers.CreateTaskController.index
 # メッセージ編集画面の表示
-GET         /messages/:id/update        controllers.UpdateMessageController.index(id: Long)
+GET         /tasks/:id/update        controllers.UpdateTaskController.index(id: Long)
 
 # メッセージの作成
-POST        /messages/create            controllers.CreateMessageController.create
+POST        /tasks/create            controllers.CreateTaskController.create
 # メッセージの更新
-POST        /messages/update            controllers.UpdateMessageController.update
+POST        /tasks/update            controllers.UpdateTaskController.update
 # メッセージの削除
-POST        /messages/:id/delete        controllers.DeleteMessageController.delete(id: Long)
+POST        /tasks/:id/delete        controllers.DeleteTaskController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)

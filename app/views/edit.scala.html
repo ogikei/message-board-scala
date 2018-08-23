@@ -1,18 +1,18 @@
 @import b3.vertical.fieldConstructor
 
-@(messageForm: Form[MessageForm])(implicit messagesProvider: MessagesProvider, request: RequestHeader)
+@(taskForm: Form[TaskForm])(implicit messagesProvider: MessagesProvider, request: RequestHeader)
 
-@main(Messages("UpdateMessage")) {
+@main(Messages("UpdateTask")) {
 
   <div class="container">
-    <h1>id = @messageForm.get.id のメッセージ編集ページ</h1>
+    <h1>id = @taskForm.get.id のメッセージ編集ページ</h1>
     <div class="row">
       <div class="col-xs-6">
-      @b3.formCSRF(routes.UpdateMessageController.update) {
-        @b3.hidden(messageForm("id").name, messageForm("id").value.get)
-        @b3.text(messageForm("body"), '_label -> "Message")
+      @b3.formCSRF(routes.UpdateTaskController.update) {
+        @b3.hidden(taskForm("id").name, taskForm("id").value.get)
+        @b3.text(taskForm("content"), '_label -> "Content")
         @b3.submit('class -> "btn btn-default") {
-          @Messages("UpdateMessage")
+          @Messages("UpdateTask")
         }
       }
       </div>

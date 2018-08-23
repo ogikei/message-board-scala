@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MessageBoard - @title</title>
+    <title>Task - @title</title>
     <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,11 +21,12 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">MessageBoard</a>
+            <a class="navbar-brand" href="/">Task</a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="@routes.CreateMessageController.index()">@Messages("CreateMessage")</a></li>
+              <li><a href="@routes.CreateTaskController.index()">@Messages("CreateTask")</a></li>
+              <li><a href="@routes.CreateTaskController.index()">@Messages("CreateTask")</a></li>
             </ul>
           </div>
         </div>
