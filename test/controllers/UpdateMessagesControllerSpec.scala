@@ -31,7 +31,7 @@ class UpdateMessagesControllerSpec extends FunSpec with MustMatchers with GuiceO
       it("should be valid") {
         val result = route(app,
           FakeRequest(POST, routes.UpdateMessageController.update().toString)
-              .withFormUrlEncodedBody("title" -> "a", "body" -> "b")).get
+              .withFormUrlEncodedBody("id" -> "1", "title" -> "a", "body" -> "b")).get
         status(result) mustBe SEE_OTHER
       }
     }
