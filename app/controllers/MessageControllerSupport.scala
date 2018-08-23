@@ -11,6 +11,7 @@ trait MessageControllerSupport {
   protected val form = Form(
     mapping(
       "id" -> optional(longNumber),
+      "title" -> nonEmptyText,
       "body" -> nonEmptyText
     )(MessageForm.apply)(MessageForm.unapply)
   )

@@ -6,7 +6,8 @@ import java.time.ZonedDateTime
 import scalikejdbc._, jsr310._
 import skinny.orm._
 
-case class Message(id: Option[Long], body: String, createAt: ZonedDateTime, updateAt: ZonedDateTime)
+case class Message(id: Option[Long], title: Option[String], body: String,
+    createAt: ZonedDateTime, updateAt: ZonedDateTime)
 
 object Message extends SkinnyCRUDMapper[Message] {
 
@@ -18,6 +19,7 @@ object Message extends SkinnyCRUDMapper[Message] {
     autoConstruct(rs, n)
 
   private def toNamedValues(record: Message): Seq[(Symbol, Any)] = Seq(
+    'title -> record.title,
     'body -> record.body,
     'createAt -> record.createAt,
     'updateAt -> record.updateAt
