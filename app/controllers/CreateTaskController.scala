@@ -25,7 +25,7 @@ class CreateTaskController @Inject()(components: ControllerComponents)
         .fold(
           formWithErrors => BadRequest(views.html.create(formWithErrors)), { model =>
             implicit val session = AutoSession
-            val message = Task(None, model.content)
+            val message = Task(None, Some(model.status), model.content)
             val result = Task.create(message)
             if (result > 0) {
               Redirect(routes.GetTasksController.index())

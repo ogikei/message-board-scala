@@ -3,7 +3,7 @@ package models
 import scalikejdbc._
 import skinny.orm._
 
-case class Task(id: Option[Long], content: String)
+case class Task(id: Option[Long], status: Option[String], content: String)
 
 object Task extends SkinnyCRUDMapper[Task] {
 
@@ -15,7 +15,8 @@ object Task extends SkinnyCRUDMapper[Task] {
     autoConstruct(rs, n)
 
   private def toNamedValues(record: Task): Seq[(Symbol, Any)] = Seq(
-    'content -> record.content,
+    'status -> record.status,
+    'content -> record.content
   )
 
   def create(task: Task)(implicit session: DBSession): Long =

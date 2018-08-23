@@ -1,6 +1,7 @@
 Id=Id
 Title=Title
 Content=Content
+Status=Status
 CreateTask=Create Task
 UpdateTask=Edit Task
 DeleteTask=Delete Task

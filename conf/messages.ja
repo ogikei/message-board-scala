@@ -1,6 +1,7 @@
 Id=Id
 Title=タイトル
 Content=内容
+Status=状態
 CreateTask=メッセージ新規作成
 UpdateTask=メッセージ編集
 DeleteTask=メッセージ削除

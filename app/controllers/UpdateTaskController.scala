@@ -17,7 +17,8 @@ class UpdateTaskController @Inject()(components: ControllerComponents)
 
   def index(messageId: Long): Action[AnyContent] = Action { implicit request =>
     val result = Task.findById(messageId).get
-    val filledForm = form.fill(TaskForm(result.id, result.content))
+    val filledForm = form.fill(TaskForm(result.id, result.status.get, result.content)
+    )
     Ok(views.html.edit(filledForm))
   }
 
@@ -31,7 +32,8 @@ class UpdateTaskController @Inject()(components: ControllerComponents)
             val result = Task
                 .updateById(model.id.get)
                 .withAttributes(
-                  'content -> model.content,
+                  'status -> model.status,
+                  'content -> model.content
                 )
             if (result > 0)
               Redirect(routes.GetTasksController.index())
