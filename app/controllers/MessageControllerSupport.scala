@@ -1,9 +1,10 @@
 package controllers
 
-import forms.MessageForm
 import play.api.data.Forms._
 import play.api.data._
 import play.api.mvc.AbstractController
+
+import forms.MessageForm
 
 trait MessageControllerSupport {
   this: AbstractController =>

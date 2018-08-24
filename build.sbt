@@ -22,7 +22,9 @@ libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.6.+",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
   "mysql" % "mysql-connector-java" % "6.0.6",
-  "com.adrianhurt" %% "play-bootstrap" % "1.2-P26-B3" // 追加
+  "com.adrianhurt" %% "play-bootstrap" % "1.2-P26-B3", // 追加
+  "org.postgresql" % "postgresql" % "42.0.0",
+  "org.flywaydb" %% "flyway-play" % "4.0.0"
 )
 
 lazy val envConfig = settingKey[Config]("env-config")
@@ -44,3 +46,16 @@ TwirlKeys.templateImports ++= Seq("forms._")
 
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
+
+herokuJdkVersion in Compile := "1.8"
+
+herokuAppName in Compile := "ogikei-message-board" // ご自身のアプリケーション名を指定してください
+
+// prod/application.confであることを確認してください
+herokuProcessTypes in Compile := Map(
+  "web" -> s"target/universal/stage/bin/${normalizedName.value} -Dhttp.port=$$PORT -Dconfig.resource=prod/application.conf -Ddb.default.migration.auto=true"
+)
+
+herokuConfigVars in Compile := Map(
+  "JAVA_OPTS" -> "-Xmx512m -Xms512m"
+)
